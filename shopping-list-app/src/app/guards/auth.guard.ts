@@ -7,11 +7,11 @@ export const authGuard = () => {
   const router = inject(Router);
 
   const user = supabaseService.getCurrentUser();
-  
+
   if (!user) {
     router.navigate(['/login']);
     return false;
   }
-  
+
   return true;
 };

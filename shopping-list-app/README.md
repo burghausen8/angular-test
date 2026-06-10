@@ -1,27 +1,81 @@
-# ShoppingListApp
+# 🛒 Lista de Compras - Angular + Supabase
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+![Angular](https://img.shields.io/badge/Angular-17-red?logo=angular)
+![Supabase](https://img.shields.io/badge/Supabase-Backend-green?logo=supabase)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
 
-## Development server
+Aplicação completa de lista de compras com autenticação, paginação e integração com Supabase.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## ✨ Funcionalidades
 
-## Code scaffolding
+- 🔐 **Autenticação completa** - Login e cadastro de usuários
+- 📝 **CRUD de itens** - Adicionar e excluir itens da lista
+- 📄 **Paginação** - Navegação eficiente entre páginas
+- 🎨 **UI Moderna** - Design responsivo com gradientes e animações
+- 🔒 **Segurança** - Row Level Security (RLS) no Supabase
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🚀 Início Rápido
 
-## Build
+### O aplicativo está rodando em: http://localhost:4200
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+**Credenciais já configuradas/Users/fabricioburghausen/Desktop/lala/angular-test/shopping-list-app && npm install dotenv* ✅
 
-## Running unit tests
+Próximo passo: Criar a tabela no Supabase (veja seção abaixo)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📋 Configuração do Banco de Dados
 
-## Running end-to-end tests
+Execute este SQL no Supabase SQL Editor:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+\`\`\`sql
+CREATE TABLE shopping_items (
+  id BIGSERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  quantity INTEGER NOT NULL DEFAULT 1,
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
 
-## Further help
+ALTER TABLE shopping_items ENABLE ROW LEVEL SECURITY;
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+CREATE POLICY "Users can view own items" ON shopping_items
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert own items" ON shopping_items
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete own items" ON shopping_items
+  FOR DELETE USING (auth.uid() = user_id);
+
+CREATE INDEX idx_shopping_items_user_id ON shopping_items(user_id);
+\`\`\`
+
+## 🔐 Variáveis de Ambiente
+
+Configuradas em:
+- `.env` (local, não commitado)
+- `src/environments/environment.ts`
+
+## 🛠️ Comandos
+
+\`\`\`bash
+npm start        # Dev server
+npm run build    # Build produção
+npm test         # Testes
+\`\`\`
+
+## 📁 Estrutura
+
+\`\`\`
+src/app/
+├── components/
+│   ├── login/
+│   └── shopping-list/
+├── services/
+│   └── supabase.service.ts
+└── guards/
+    └── auth.guard.ts
+\`\`\`
+
+## 📄 Licença
+
+MIT

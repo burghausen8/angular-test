@@ -25,7 +25,7 @@
           [disabled]="loading"
         />
         <button class="btn-add" (click)="addItem()" [disabled]="loading">
-          {{ loading ? '...' : '+ Adicionar' }}
+          {{ loading ? "..." : "+ Adicionar" }}
         </button>
       </div>
     </div>
@@ -51,8 +51,8 @@
           <span class="item-name">{{ item.name }}</span>
           <span class="item-quantity">{{ item.quantity }}x</span>
         </div>
-        <button 
-          class="btn-delete" 
+        <button
+          class="btn-delete"
           (click)="deleteItem(item.id!)"
           [disabled]="loading"
           title="Excluir item"
@@ -64,14 +64,14 @@
 
     <!-- Paginação -->
     <div *ngIf="totalPages > 1" class="pagination">
-      <button 
+      <button
         class="btn-page"
-        (click)="previousPage()" 
+        (click)="previousPage()"
         [disabled]="currentPage === 0 || loading"
       >
         ← Anterior
       </button>
-      
+
       <div class="page-numbers">
         <button
           *ngFor="let page of pages"
@@ -84,9 +84,9 @@
         </button>
       </div>
 
-      <button 
+      <button
         class="btn-page"
-        (click)="nextPage()" 
+        (click)="nextPage()"
         [disabled]="currentPage >= totalPages - 1 || loading"
       >
         Próxima →

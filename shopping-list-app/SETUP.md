@@ -79,9 +79,9 @@ Edite o arquivo `src/environments/environment.ts`:
 export const environment = {
   production: false,
   supabase: {
-    url: 'SUA_URL_DO_SUPABASE',
-    key: 'SUA_CHAVE_ANON_DO_SUPABASE'
-  }
+    url: "SUA_URL_DO_SUPABASE",
+    key: "SUA_CHAVE_ANON_DO_SUPABASE",
+  },
 };
 ```
 
@@ -102,15 +102,18 @@ Acesse: [http://localhost:4200](http://localhost:4200)
 ## 📱 Como Usar
 
 ### Criar Conta
+
 1. Clique em "Criar nova conta"
 2. Preencha email e senha
 3. Confirme o email (verifique sua caixa de entrada)
 
 ### Fazer Login
+
 1. Digite seu email e senha
 2. Clique em "Entrar"
 
 ### Gerenciar Lista de Compras
+
 - **Adicionar**: Digite o nome do item, quantidade e clique em "Adicionar"
 - **Excluir**: Clique no ícone de lixeira 🗑️
 - **Navegar**: Use os botões de paginação para ver mais itens

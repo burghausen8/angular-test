@@ -9,7 +9,7 @@ import { SupabaseService, ShoppingItem } from '../../services/supabase.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css']
+  styleUrls: ['./shopping-list.component.css'],
 })
 export class ShoppingListComponent implements OnInit {
   items: ShoppingItem[] = [];
@@ -17,7 +17,7 @@ export class ShoppingListComponent implements OnInit {
   newItemQuantity = 1;
   loading = false;
   errorMessage = '';
-  
+
   // Paginação
   currentPage = 0;
   pageSize = 10;

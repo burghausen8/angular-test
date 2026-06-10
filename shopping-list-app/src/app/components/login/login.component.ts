@@ -9,7 +9,7 @@ import { SupabaseService } from '../../services/supabase.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   email = '';
@@ -35,7 +35,8 @@ export class LoginComponent {
     try {
       if (this.isSignUp) {
         await this.supabaseService.signUp(this.email, this.password);
-        this.errorMessage = 'Cadastro realizado! Verifique seu email para confirmar.';
+        this.errorMessage =
+          'Cadastro realizado! Verifique seu email para confirmar.';
         this.isSignUp = false;
       } else {
         await this.supabaseService.signIn(this.email, this.password);

@@ -7,6 +7,7 @@
 ## 📋 O que foi criado?
 
 ### ✨ Funcionalidades
+
 - **Tela de Login/Cadastro** - Design moderno com gradiente roxo
 - **Lista de Compras** - Interface limpa e intuitiva
 - **Paginação** - Navegação entre páginas de itens
@@ -14,6 +15,7 @@
 - **CRUD Completo** - Adicionar e excluir itens
 
 ### 📁 Estrutura do Projeto
+
 ```
 src/app/
 ├── components/
@@ -32,6 +34,7 @@ src/app/
 ## 🚀 Próximos Passos - Configure o Supabase
 
 ### **PASSO 1: Criar conta no Supabase**
+
 1. Acesse: https://supabase.com
 2. Clique em **"Start your project"**
 3. Faça login com GitHub
@@ -105,9 +108,9 @@ CREATE INDEX idx_shopping_items_created_at ON shopping_items(created_at DESC);
 export const environment = {
   production: false,
   supabase: {
-    url: 'COLE_AQUI_O_PROJECT_URL',
-    key: 'COLE_AQUI_O_ANON_KEY'
-  }
+    url: "COLE_AQUI_O_PROJECT_URL",
+    key: "COLE_AQUI_O_ANON_KEY",
+  },
 };
 ```
 
@@ -133,11 +136,13 @@ export const environment = {
 ## 🎨 Recursos Visuais
 
 ### Tela de Login
+
 - Gradiente roxo moderno
 - Formulário responsivo
 - Alternância entre login/cadastro
 
 ### Lista de Compras
+
 - Cards com animações hover
 - Contador de quantidades
 - Paginação com botões de navegação
@@ -174,14 +179,17 @@ Ctrl+C (no terminal)
 ## 🔧 Troubleshooting
 
 ### ❌ "Invalid credentials"
+
 - Verifique se você confirmou o email
 - Tente resetar a senha no Supabase
 
 ### ❌ "Only available in browser"
+
 - Isso é normal durante o build
 - No navegador vai funcionar normalmente
 
 ### ❌ Itens não aparecem
+
 - Verifique se as políticas RLS foram criadas
 - Confirme que você está logado
 
@@ -202,6 +210,7 @@ Ctrl+C (no terminal)
 ## 🌟 Seu aplicativo está pronto!
 
 **Configurado:**
+
 - ✅ Angular 17
 - ✅ Supabase Client
 - ✅ Autenticação
@@ -210,6 +219,7 @@ Ctrl+C (no terminal)
 - ✅ Design moderno
 
 **Falta apenas:**
+
 - ⏳ Configurar as credenciais do Supabase (5 minutos)
 
 ---
@@ -217,6 +227,7 @@ Ctrl+C (no terminal)
 ## 📞 Suporte
 
 Se precisar de ajuda, verifique:
+
 - Documentação do Supabase: https://supabase.com/docs
 - Documentação do Angular: https://angular.io/docs
 
