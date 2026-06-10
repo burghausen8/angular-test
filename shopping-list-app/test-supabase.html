@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teste Supabase</title>
+  </head>
+  <body>
+    <h1>Teste de Conexão Supabase</h1>
+    <button onclick="testConnection()">Testar Conexão</button>
+    <button onclick="testSignup()">Testar Signup</button>
+    <pre id="result"></pre>
+
+    <script type="module">
+      import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+      const supabaseUrl = "https://axdoupitwwybjwwqdcho.supabase.co";
+      const supabaseKey =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4ZG91cGl0d3d5Ymp3d3FkY2hvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQxOTI0MzgsImV4cCI6MjA0OTc2ODQzOH0.pwDfKehD6z0NZXhxBLT8HQ_5ol21kja";
+
+      const supabase = createClient(supabaseUrl, supabaseKey);
+
+      window.testConnection = async () => {
+        const result = document.getElementById("result");
+        result.textContent = "Testando...";
+
+        try {
+          const { data, error } = await supabase.auth.getSession();
+          if (error) {
+            result.textContent = "❌ Erro: " + JSON.stringify(error, null, 2);
+          } else {
+            result.textContent =
+              "✅ Conexão OK!\n" + JSON.stringify(data, null, 2);
+          }
+        } catch (e) {
+          result.textContent = "❌ Erro: " + e.message;
+        }
+      };
+
+      window.testSignup = async () => {
+        const result = document.getElementById("result");
+        result.textContent = "Tentando criar conta...";
+
+        const email = "teste" + Date.now() + "@example.com";
+        const password = "123456";
+
+        try {
+          const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+          });
+
+          if (error) {
+            result.textContent =
+              "❌ Erro no signup:\n" + JSON.stringify(error, null, 2);
+          } else {
+            result.textContent =
+              "✅ Signup OK!\nEmail: " +
+              email +
+              "\n" +
+              JSON.stringify(data, null, 2);
+          }
+        } catch (e) {
+          result.textContent = "❌ Erro: " + e.message;
+        }
+      };
+    </script>
+  </body>
+</html>
