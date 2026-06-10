@@ -35,12 +35,13 @@ src/environments/environment.prod.template.ts  ← Template seguro
 ### 1. Para você (desenvolvedor original):
 
 Seus arquivos `environment.ts` já existem com as credenciais:
+
 ```typescript
 export const environment = {
   production: false,
   supabase: {
-    url: 'https://axdoupitwwybjwwqdcho.supabase.co',
-    key: 'sb_publishable_pwDfKehD6z0NZXhxBLT8HQ_5ol21kja',
+    url: "https://axdoupitwwybjwwqdcho.supabase.co",
+    key: "sb_publishable_pwDfKehD6z0NZXhxBLT8HQ_5ol21kja",
   },
 };
 ```
@@ -128,21 +129,24 @@ Antes de fazer push para o GitHub:
 ### Se as credenciais foram commitadas acidentalmente:
 
 1. **URGENTE:** Rotacione as chaves no Supabase imediatamente
+
    - Vá em Settings → API
    - Clique em "Rotate keys"
 
 2. **Remova do histórico do Git:**
+
    ```bash
    # Para o arquivo específico
    git filter-branch --force --index-filter \
      "git rm --cached --ignore-unmatch src/environments/environment.ts" \
      --prune-empty --tag-name-filter cat -- --all
-   
+
    # Force push (cuidado!)
    git push origin --force --all
    ```
 
 3. **Use uma ferramenta especializada:**
+
    - [BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
    - [git-filter-repo](https://github.com/newren/git-filter-repo)
 
@@ -182,7 +186,7 @@ Antes de fazer push para o GitHub:
 ✅ **Suas credenciais estão seguras**  
 ✅ **Templates fornecidos para novos devs**  
 ✅ **`.gitignore` configurado corretamente**  
-✅ **Scripts de setup automatizados**  
+✅ **Scripts de setup automatizados**
 
 🔒 **Seu código está protegido!**
 

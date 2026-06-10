@@ -10,7 +10,7 @@ export const environment = {
 // 1. Copie este arquivo para: environment.prod.ts
 // 2. Substitua YOUR_SUPABASE_URL pela URL do seu projeto Supabase
 // 3. Substitua YOUR_SUPABASE_PUBLISHABLE_KEY pela sua Publishable Key
-// 
+//
 // Onde encontrar as credenciais:
 // 1. Acesse: https://supabase.com/dashboard
 // 2. Selecione seu projeto

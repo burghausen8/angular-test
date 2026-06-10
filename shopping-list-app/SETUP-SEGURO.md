@@ -2,7 +2,7 @@
 
 ## 🚨 IMPORTANTE: Segurança das Credenciais
 
-Este projeto **NÃO commita as credenciais do Supabase** no GitHub. 
+Este projeto **NÃO commita as credenciais do Supabase** no GitHub.
 Os arquivos `environment.ts` e `environment.prod.ts` estão no `.gitignore`.
 
 ---
@@ -39,23 +39,25 @@ cp src/environments/environment.prod.template.ts src/environments/environment.pr
 Edite os arquivos criados e adicione suas credenciais:
 
 **src/environments/environment.ts:**
+
 ```typescript
 export const environment = {
   production: false,
   supabase: {
-    url: 'https://sua-url.supabase.co',     // ← Sua URL aqui
-    key: 'sua-publishable-key-aqui',         // ← Sua Key aqui
+    url: "https://sua-url.supabase.co", // ← Sua URL aqui
+    key: "sua-publishable-key-aqui", // ← Sua Key aqui
   },
 };
 ```
 
 **src/environments/environment.prod.ts:**
+
 ```typescript
 export const environment = {
   production: true,
   supabase: {
-    url: 'https://sua-url.supabase.co',     // ← Sua URL aqui
-    key: 'sua-publishable-key-aqui',         // ← Sua Key aqui
+    url: "https://sua-url.supabase.co", // ← Sua URL aqui
+    key: "sua-publishable-key-aqui", // ← Sua Key aqui
   },
 };
 ```
@@ -230,6 +232,7 @@ npm test                 # Testes unitários
 ### "environment.ts not found"
 
 Execute o setup:
+
 ```bash
 ./setup.sh
 ```

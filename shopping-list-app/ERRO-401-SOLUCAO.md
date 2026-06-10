@@ -3,6 +3,7 @@
 ## ✅ Chave API atualizada!
 
 A chave `sb_publishable_pwDfKehD6z0NZXhxBLT8HQ_5ol21kja` foi configurada em:
+
 - ✅ `.env`
 - ✅ `src/environments/environment.ts`
 - ✅ `src/environments/environment.prod.ts`
@@ -38,6 +39,7 @@ A chave `sb_publishable_pwDfKehD6z0NZXhxBLT8HQ_5ol21kja` foi configurada em:
 ## 🧪 Testar a conexão
 
 1. **Reinicie o servidor Angular** (importante!):
+
    ```bash
    # Pare o servidor (Ctrl+C)
    # Depois inicie novamente:
@@ -47,6 +49,7 @@ A chave `sb_publishable_pwDfKehD6z0NZXhxBLT8HQ_5ol21kja` foi configurada em:
 2. **Abra o navegador** em: http://localhost:4200
 
 3. **Teste criar uma conta**:
+
    - Email: teste@exemplo.com
    - Senha: 123456 (mínimo 6 caracteres)
 
@@ -59,6 +62,7 @@ A chave `sb_publishable_pwDfKehD6z0NZXhxBLT8HQ_5ol21kja` foi configurada em:
 Pressione **F12** no navegador e vá na aba **Console** ou **Network**:
 
 Na aba **Network**:
+
 - Procure pela requisição `signup`
 - Clique nela
 - Veja a resposta (Response)
@@ -69,6 +73,7 @@ Na aba **Network**:
 ## 📞 Se ainda der erro 401
 
 Me informe:
+
 1. A mensagem exata que aparece no console do navegador
 2. Se o Email Auth está habilitado no Supabase
 3. Se o projeto está ativo (não pausado)
