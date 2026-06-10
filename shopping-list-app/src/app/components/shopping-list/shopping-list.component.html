@@ -1,0 +1,100 @@
+<div class="shopping-list-container">
+  <header class="header">
+    <h1>🛒 Minha Lista de Compras</h1>
+    <button class="btn-logout" (click)="logout()">Sair</button>
+  </header>
+
+  <div class="content">
+    <!-- Formulário para adicionar item -->
+    <div class="add-item-form">
+      <h2>Adicionar Item</h2>
+      <div class="form-row">
+        <input
+          type="text"
+          [(ngModel)]="newItemName"
+          placeholder="Nome do item"
+          class="input-item-name"
+          [disabled]="loading"
+          (keyup.enter)="addItem()"
+        />
+        <input
+          type="number"
+          [(ngModel)]="newItemQuantity"
+          min="1"
+          class="input-quantity"
+          [disabled]="loading"
+        />
+        <button class="btn-add" (click)="addItem()" [disabled]="loading">
+          {{ loading ? '...' : '+ Adicionar' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Lista de itens -->
+    <div class="items-list">
+      <div *ngIf="loading && items.length === 0" class="loading">
+        Carregando...
+      </div>
+
+      <div *ngIf="!loading && items.length === 0" class="empty-state">
+        <p>📝 Nenhum item na lista ainda.</p>
+        <p>Adicione seu primeiro item acima!</p>
+      </div>
+
+      <div *ngFor="let item of items" class="item-card">
+        <div class="item-info">
+          <span class="item-name">{{ item.name }}</span>
+          <span class="item-quantity">{{ item.quantity }}x</span>
+        </div>
+        <button 
+          class="btn-delete" 
+          (click)="deleteItem(item.id!)"
+          [disabled]="loading"
+          title="Excluir item"
+        >
+          🗑️
+        </button>
+      </div>
+    </div>
+
+    <!-- Paginação -->
+    <div *ngIf="totalPages > 1" class="pagination">
+      <button 
+        class="btn-page"
+        (click)="previousPage()" 
+        [disabled]="currentPage === 0 || loading"
+      >
+        ← Anterior
+      </button>
+      
+      <div class="page-numbers">
+        <button
+          *ngFor="let page of pages"
+          class="btn-page-number"
+          [class.active]="page === currentPage"
+          (click)="goToPage(page)"
+          [disabled]="loading"
+        >
+          {{ page + 1 }}
+        </button>
+      </div>
+
+      <button 
+        class="btn-page"
+        (click)="nextPage()" 
+        [disabled]="currentPage >= totalPages - 1 || loading"
+      >
+        Próxima →
+      </button>
+    </div>
+
+    <div class="pagination-info">
+      Mostrando {{ items.length }} de {{ totalItems }} itens
+    </div>
+  </div>
+</div>

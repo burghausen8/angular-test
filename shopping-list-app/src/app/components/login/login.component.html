@@ -1,0 +1,46 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>{{ isSignUp ? 'Criar Conta' : 'Login' }}</h1>
+    <p class="subtitle">Lista de Compras</p>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="seu@email.com"
+          required
+          [disabled]="loading"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="••••••••"
+          required
+          [disabled]="loading"
+        />
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="loading">
+        {{ loading ? 'Aguarde...' : (isSignUp ? 'Cadastrar' : 'Entrar') }}
+      </button>
+
+      <button type="button" class="btn-secondary" (click)="toggleMode()" [disabled]="loading">
+        {{ isSignUp ? 'Já tenho conta' : 'Criar nova conta' }}
+      </button>
+    </form>
+  </div>
+</div>
