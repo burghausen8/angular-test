@@ -72,7 +72,9 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
-    await this.supabaseAuth.signIn(email, password);
+    const session = await this.supabaseAuth.signIn(email, password);
+
+    this.currentUserSubject.next(session.user);
 
     this.router.navigate(['/shopping-list']);
   }
