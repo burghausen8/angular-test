@@ -154,7 +154,7 @@ input:disabled {
 
 .item-card:hover {
   background: #e9ecef;
-  transform: translateX(5px);
+  transform: translateX(1px);
 }
 
 .item-info {
@@ -180,6 +180,25 @@ input:disabled {
   margin-right: 15px;
 }
 
+.btn-edit {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.btn-edit:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.btn-edit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .btn-delete {
   background: none;
   border: none;
@@ -191,7 +210,6 @@ input:disabled {
 }
 
 .btn-delete:hover:not(:disabled) {
-  background: #ff6b6b;
   transform: scale(1.1);
 }
 
