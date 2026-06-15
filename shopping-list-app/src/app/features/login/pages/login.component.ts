@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SupabaseService } from '../../services/supabase.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +17,7 @@ export class LoginComponent {
   errorMessage = '';
   isSignUp = false;
 
-  constructor(
-    private supabaseService: SupabaseService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService) {}
 
   async onSubmit() {
     if (!this.email || !this.password) {
@@ -34,13 +30,12 @@ export class LoginComponent {
 
     try {
       if (this.isSignUp) {
-        await this.supabaseService.signUp(this.email, this.password);
+        await this.authService.signUp(this.email, this.password);
         this.errorMessage =
           'Cadastro realizado! Verifique seu email para confirmar.';
         this.isSignUp = false;
       } else {
-        await this.supabaseService.signIn(this.email, this.password);
-        this.router.navigate(['/shopping-list']);
+        await this.authService.login(this.email, this.password);
       }
     } catch (error: any) {
       this.errorMessage = error.message || 'Erro ao autenticar';

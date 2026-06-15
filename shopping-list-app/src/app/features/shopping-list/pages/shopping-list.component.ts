@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SupabaseService, ShoppingItem } from '../../services/supabase.service';
+import { ShoppingItem, ShoppingService } from '../services/shopping.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -25,8 +25,8 @@ export class ShoppingListComponent implements OnInit {
   totalPages = 0;
 
   constructor(
-    private supabaseService: SupabaseService,
-    private router: Router
+    private shoppingService: ShoppingService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class ShoppingListComponent implements OnInit {
     this.errorMessage = '';
 
     try {
-      const result = await this.supabaseService.getShoppingItems(
+      const result = await this.shoppingService.getShoppingItems(
         this.currentPage,
         this.pageSize
       );
@@ -67,7 +67,7 @@ export class ShoppingListComponent implements OnInit {
     this.errorMessage = '';
 
     try {
-      await this.supabaseService.createShoppingItem(
+      await this.shoppingService.createShoppingItem(
         this.newItemName,
         this.newItemQuantity
       );
@@ -91,7 +91,7 @@ export class ShoppingListComponent implements OnInit {
     this.errorMessage = '';
 
     try {
-      await this.supabaseService.deleteShoppingItem(id);
+      await this.shoppingService.deleteShoppingItem(id);
       await this.loadItems();
     } catch (error: any) {
       this.errorMessage = error.message || 'Erro ao excluir item';
@@ -121,8 +121,7 @@ export class ShoppingListComponent implements OnInit {
 
   async logout() {
     try {
-      await this.supabaseService.signOut();
-      this.router.navigate(['/login']);
+      await this.authService.logout();
     } catch (error: any) {
       this.errorMessage = error.message || 'Erro ao sair';
     }
