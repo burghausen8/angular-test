@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ShoppingItem, ShoppingService } from '../services/shopping.service';
+import { ShoppingService } from '../services/shopping.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { ShoppingItem } from '../domain/shopping.item';
 
 @Component({
   selector: 'app-shopping-list',
