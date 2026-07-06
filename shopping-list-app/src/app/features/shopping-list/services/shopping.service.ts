@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ShoppingRepository } from '../domain/shopping.repository';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingService {
-  constructor(private repository: ShoppingRepository) {}
+  constructor(
+    @Inject(SHOPPING_REPOSITORY) private repository: ShoppingRepository
+  ) {}
 
   getShoppingItems(page: number, pageSize: number) {
     return this.repository.getShoppingItems(page, pageSize);
@@ -19,3 +21,9 @@ export class ShoppingService {
     return this.repository.deleteShoppingItem(id);
   }
 }
+
+import { InjectionToken } from '@angular/core';
+
+export const SHOPPING_REPOSITORY = new InjectionToken<ShoppingRepository>(
+  'ShoppingRepository'
+);
