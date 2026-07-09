@@ -8,6 +8,7 @@ import {
 import { AppUser } from '../models/user.model';
 import { environment } from '../../../../environments/environment';
 import { extractUserFromToken, isTokenExpired } from '../utils/jwt.utils';
+import { RegisterUser } from '../models/register.user.model';
 
 interface LoginResponse {
   token: string;
@@ -43,6 +44,23 @@ export class HttpAuthProvider implements IAuthProvider {
 
   async signOut(): Promise<void> {
     localStorage.removeItem('auth_token');
+  }
+
+  async register(email: string, password: string): Promise<RegisterUser> {
+    const response = await firstValueFrom(
+      this.http.post<RegisterUser>(`${this.baseUrl}/auth/register`, {
+        email,
+        password,
+      })
+    );
+
+    return response;
+  }
+
+  async verifyTwoFactor(email: string, token: string): Promise<void> {
+    await firstValueFrom(
+      this.http.post(`${this.baseUrl}/auth/verify-2fa`, { email, token })
+    );
   }
 
   async getSession(): Promise<AuthSession | null> {

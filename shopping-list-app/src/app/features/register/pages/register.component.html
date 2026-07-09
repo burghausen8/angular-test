@@ -1,0 +1,100 @@
+<div class="register-container">
+  <div class="register-card">
+    <h1>{{ is2FA ? "Validar 2FA" : "Criar Conta" }}</h1>
+    <p class="subtitle">
+      {{
+        is2FA ? "Por favor, verifique o codigo que lhe enviamos por e-mail" : ""
+      }}
+    </p>
+
+    <form (ngSubmit)="onSubmit()">
+      @if (!is2FA) {
+      <div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="seu@email.com"
+            required
+            [disabled]="loading"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Senha </label>
+
+          <div class="password-container">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="••••••••"
+              required
+              [disabled]="loading"
+            />
+
+            <button type="button" class="eye-button" (click)="togglePassword()">
+              {{ showPassword ? "🙈" : "👁️" }}
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword"> Confirmar senha </label>
+
+          <div class="password-container">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="confirmPassword"
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+              placeholder="••••••••"
+              required
+              [disabled]="loading"
+            />
+
+            <button type="button" class="eye-button" (click)="togglePassword()">
+              {{ showPassword ? "🙈" : "👁️" }}
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+      </div>
+      } @if (is2FA) {
+      <div>
+        <div class="otp-container">
+          @for (digit of otpDigits; track $index) {
+          <input
+            #otpInput
+            class="otp-input"
+            type="text"
+            inputmode="numeric"
+            maxlength="1"
+            [value]="digit"
+            [disabled]="loading"
+            (input)="onOtpInput($index, $event)"
+            (keydown)="onOtpKeydown($index, $event)"
+            (paste)="onOtpPaste($event)"
+          />
+          }
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+      </div>
+      }
+
+      <button type="submit" class="btn-primary" [disabled]="loading">
+        {{ loading ? "Aguarde..." : is2FA ? "Validar" : "Cadastrar" }}
+      </button>
+    </form>
+  </div>
+</div>

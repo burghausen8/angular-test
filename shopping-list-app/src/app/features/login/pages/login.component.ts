@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,8 @@ export class LoginComponent {
   password = '';
   loading = false;
   errorMessage = '';
-  isSignUp = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   async onSubmit() {
     if (!this.email || !this.password) {
@@ -29,14 +29,7 @@ export class LoginComponent {
     this.errorMessage = '';
 
     try {
-      // if (this.isSignUp) {
-      //   await this.authService.signUp(this.email, this.password);
-      //   this.errorMessage =
-      //     'Cadastro realizado! Verifique seu email para confirmar.';
-      //   this.isSignUp = false;
-      // } else {
       await this.authService.login(this.email, this.password);
-      // }
     } catch (error: any) {
       this.errorMessage = error.message || 'Erro ao autenticar';
     } finally {
@@ -44,8 +37,8 @@ export class LoginComponent {
     }
   }
 
-  toggleMode() {
-    this.isSignUp = !this.isSignUp;
+  onClickCreateNewAccount() {
     this.errorMessage = '';
+    this.router.navigate(['/register']);
   }
 }

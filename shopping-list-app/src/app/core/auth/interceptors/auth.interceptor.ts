@@ -3,6 +3,7 @@ import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { extractApiError } from '../utils/http-error.utils';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
@@ -15,14 +16,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         headers: req.headers.set('Authorization', `Bearer ${token}`),
       })
     : req;
-
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401) {
         authService.forceLogout();
         router.navigate(['/login']);
       }
-      return throwError(() => error);
+
+      return throwError(() => extractApiError(error));
     })
   );
 };

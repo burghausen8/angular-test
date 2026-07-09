@@ -1,0 +1,165 @@
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-bg);
+  padding: var(--spacing-xl);
+}
+
+.register-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-4xl);
+  width: 100%;
+  max-width: 400px;
+}
+
+h1 {
+  margin: 0 0 var(--spacing-sm);
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-3xl);
+  font-size: var(--font-size-md);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-xl);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-body);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+}
+
+input {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  transition: var(--transition-base);
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+}
+
+input:disabled {
+  background-color: var(--color-bg-disabled);
+  cursor: not-allowed;
+}
+
+.btn-primary,
+.btn-secondary {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: var(--transition-base);
+  margin-bottom: var(--spacing-sm);
+}
+
+.btn-primary {
+  background: var(--color-primary-bg);
+  color: var(--color-text-on-primary);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--color-bg-item);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.error-message {
+  padding: var(--spacing-md);
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  border-radius: var(--radius-md);
+  color: var(--color-error-text);
+  margin-bottom: var(--spacing-xl);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 45px;
+}
+
+.eye-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* OTP / 2FA */
+.otp-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md, 10px);
+  margin-bottom: var(--spacing-xl, 20px);
+}
+
+.otp-input {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: var(--font-size-xl, 1.5rem);
+  font-weight: var(--font-weight-semibold, 600);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0;
+  box-sizing: border-box;
+  transition: var(--transition-base);
+  caret-color: transparent;
+}
+
+.otp-input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-border-focus) 20%, transparent);
+}
+
+.otp-input:disabled {
+  background-color: var(--color-bg-disabled);
+  cursor: not-allowed;
+}

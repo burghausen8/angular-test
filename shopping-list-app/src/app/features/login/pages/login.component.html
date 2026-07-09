@@ -1,7 +1,7 @@
 <div class="login-container">
   <div class="login-card">
-    <h1>{{ isSignUp ? "Criar Conta" : "Login" }}</h1>
-    <p class="subtitle">Lista de Compras</p>
+    <h1>Login</h1>
+    <p class="subtitle">E-commerce do Fabrício</p>
 
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
@@ -35,16 +35,16 @@
       </div>
 
       <button type="submit" class="btn-primary" [disabled]="loading">
-        {{ loading ? "Aguarde..." : isSignUp ? "Cadastrar" : "Entrar" }}
+        {{ loading ? "Aguarde..." : "Entrar" }}
       </button>
 
       <button
         type="button"
         class="btn-secondary"
-        (click)="toggleMode()"
+        (click)="onClickCreateNewAccount()"
         [disabled]="loading"
       >
-        {{ isSignUp ? "Já tenho conta" : "Criar nova conta" }}
+        Criar nova conta
       </button>
     </form>
   </div>

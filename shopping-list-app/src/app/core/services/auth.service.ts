@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { IAuthProvider } from '../auth/interfaces/auth-provider.interface';
 import { AppUser } from '../auth/models/user.model';
 import { AUTH_PROVIDER } from '../auth/tokens/auth.tokens';
+import { RegisterUser } from '../auth/models/register.user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,14 @@ export class AuthService {
     this.currentUserSubject.next(null);
 
     this.router.navigate(['/login']);
+  }
+
+  async register(email: string, password: string): Promise<void> {
+    await this.authProvider.register(email, password);
+  }
+
+  async verifyTwoFactor(email: string, token: string): Promise<void> {
+    await this.authProvider.verifyTwoFactor(email, token);
   }
 
   getCurrentUser(): AppUser | null {
