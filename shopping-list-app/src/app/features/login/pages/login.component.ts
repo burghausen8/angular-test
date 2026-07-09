@@ -29,14 +29,14 @@ export class LoginComponent {
     this.errorMessage = '';
 
     try {
-      if (this.isSignUp) {
-        await this.authService.signUp(this.email, this.password);
-        this.errorMessage =
-          'Cadastro realizado! Verifique seu email para confirmar.';
-        this.isSignUp = false;
-      } else {
-        await this.authService.login(this.email, this.password);
-      }
+      // if (this.isSignUp) {
+      //   await this.authService.signUp(this.email, this.password);
+      //   this.errorMessage =
+      //     'Cadastro realizado! Verifique seu email para confirmar.';
+      //   this.isSignUp = false;
+      // } else {
+      await this.authService.login(this.email, this.password);
+      // }
     } catch (error: any) {
       this.errorMessage = error.message || 'Erro ao autenticar';
     } finally {

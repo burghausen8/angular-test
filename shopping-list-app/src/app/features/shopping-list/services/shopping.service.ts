@@ -1,5 +1,9 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { ShoppingRepository } from '../domain/shopping.repository';
+
+export const SHOPPING_REPOSITORY = new InjectionToken<ShoppingRepository>(
+  'ShoppingRepository'
+);
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +25,3 @@ export class ShoppingService {
     return this.repository.deleteShoppingItem(id);
   }
 }
-
-import { InjectionToken } from '@angular/core';
-
-export const SHOPPING_REPOSITORY = new InjectionToken<ShoppingRepository>(
-  'ShoppingRepository'
-);
