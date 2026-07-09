@@ -1,4 +1,9 @@
 export interface AppUser {
-  id: string;
+  sub: string;
   email: string;
+  role: UserType;
+}
+
+export enum UserType {
+  USER,
 }

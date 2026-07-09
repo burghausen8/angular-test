@@ -7,9 +7,9 @@ import {
 } from '../interfaces/auth-provider.interface';
 import { AppUser } from '../models/user.model';
 import { environment } from '../../../../environments/environment';
+import { extractUserFromToken, isTokenExpired } from '../utils/jwt.utils';
 
 interface LoginResponse {
-  user: AppUser;
   token: string;
 }
 
@@ -32,14 +32,16 @@ export class HttpAuthProvider implements IAuthProvider {
         password,
       })
     );
-    localStorage.setItem('auth_token', response.token);
-    return response;
+
+    const { token } = response;
+    const user = extractUserFromToken(token);
+
+    localStorage.setItem('auth_token', token);
+
+    return { token, user };
   }
 
   async signOut(): Promise<void> {
-    await firstValueFrom(
-      this.http.post<void>(`${this.baseUrl}/auth/logout`, {})
-    );
     localStorage.removeItem('auth_token');
   }
 
@@ -47,18 +49,18 @@ export class HttpAuthProvider implements IAuthProvider {
     const token = localStorage.getItem('auth_token');
     if (!token) return null;
 
+    if (isTokenExpired(token)) {
+      localStorage.removeItem('auth_token');
+      return null;
+    }
+
     try {
-      const response = await firstValueFrom(
-        this.http.get<LoginResponse>(`${this.baseUrl}/auth/session`)
-      );
-      return response;
+      const user = extractUserFromToken(token);
+      return { token, user };
     } catch {
       localStorage.removeItem('auth_token');
       return null;
     }
   }
-
-  // Sua API REST não tem WebSocket de estado — o interceptor cuida do 401.
-  // Este hook é mantido para compatibilidade com a interface.
   onAuthStateChange(_callback: (user: AppUser | null) => void): void {}
 }

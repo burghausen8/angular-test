@@ -52,8 +52,6 @@ export class AuthService {
   isAuthenticated(): boolean {
     return this.currentUserSubject.value !== null;
   }
-
-  /** Chamado pelo interceptor no 401 — limpa o estado sem chamar a API */
   forceLogout(): void {
     localStorage.removeItem('auth_token');
     this.currentUserSubject.next(null);
