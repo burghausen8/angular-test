@@ -59,7 +59,10 @@ export class HttpAuthProvider implements IAuthProvider {
 
   async verifyTwoFactor(email: string, token: string): Promise<void> {
     await firstValueFrom(
-      this.http.post(`${this.baseUrl}/auth/verify-2fa`, { email, token })
+      this.http.post(`${this.baseUrl}/auth/validate-verification-token`, {
+        email,
+        token,
+      })
     );
   }
 
