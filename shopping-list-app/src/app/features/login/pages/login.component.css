@@ -109,3 +109,60 @@ button:disabled {
   font-size: var(--font-size-sm);
   text-align: center;
 }
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.eye-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
+  line-height: 1;
+}
+
+.otp-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md, 10px);
+  margin-bottom: var(--spacing-xl, 20px);
+}
+
+.otp-input {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: var(--font-size-xl, 1.5rem);
+  font-weight: var(--font-weight-semibold, 600);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0;
+  box-sizing: border-box;
+  transition: var(--transition-base);
+  caret-color: transparent;
+}
+
+.otp-input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-border-focus) 20%, transparent);
+}
+
+.otp-input:disabled {
+  background-color: var(--color-bg-disabled);
+  cursor: not-allowed;
+}

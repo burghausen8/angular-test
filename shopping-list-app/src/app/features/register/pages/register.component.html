@@ -95,6 +95,14 @@
       <button type="submit" class="btn-primary" [disabled]="loading">
         {{ loading ? "Aguarde..." : is2FA ? "Validar" : "Cadastrar" }}
       </button>
+      <button
+        type="button"
+        class="btn-secondary"
+        (click)="onClickbackLogin()"
+        [disabled]="loading"
+      >
+        Voltar para Login
+      </button>
     </form>
   </div>
 </div>

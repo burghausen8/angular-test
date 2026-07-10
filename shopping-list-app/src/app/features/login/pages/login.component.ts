@@ -16,6 +16,7 @@ export class LoginComponent {
   password = '';
   loading = false;
   errorMessage = '';
+  showPassword = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -40,5 +41,9 @@ export class LoginComponent {
   onClickCreateNewAccount() {
     this.errorMessage = '';
     this.router.navigate(['/register']);
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 }

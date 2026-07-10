@@ -110,4 +110,8 @@ export class RegisterComponent {
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
+
+  onClickbackLogin() {
+    this.router.navigate(['/login']);
+  }
 }
